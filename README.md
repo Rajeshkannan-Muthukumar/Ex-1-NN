@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME : M.RAJESHKANNAN</H3>
+<H3>ENTER YOUR REGISTER NO: 212221230081</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -29,19 +29,100 @@ Another aspect is that the data set should be formatted in such a way that more 
 
 
 ## ALGORITHM:
-STEP 1:Importing the libraries<BR>
-STEP 2:Importing the dataset<BR>
-STEP 3:Taking care of missing data<BR>
-STEP 4:Encoding categorical data<BR>
-STEP 5:Normalizing the data<BR>
-STEP 6:Splitting the data into test and train<BR>
+### STEP 1:
+Importing the libraries<BR>
+### STEP 2:
+Importing the dataset<BR>
+### STEP 3:
+Taking care of missing data<BR>
+### STEP 4:
+Encoding categorical data<BR>
+### STEP 5:
+Normalizing the data<BR>
+### STEP 6:
+Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
 
+#import libraries
+from google.colab import files
+import pandas as pd
+import seaborn as sns
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from scipy import stats
+import numpy as np
 
+#Read the dataset 
+df=pd.read_csv("Churn_Modelling.csv")
+
+#Checking data
+df.head()
+df.tail()
+df.columns
+
+#Check the missing data
+df.isnull().sum()
+
+#Check for Duplicates
+df.duplicated()
+
+#check for outliers
+df.describe()
+
+# dropping string values data from dataset
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+
+#Checking datasets after dropping string values data from dataset
+data.head()
+
+#Normalize the dataset
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+
+# Split the dataset
+X=df.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(X)
+print(y)
+
+# Training and testing model
+
+X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2)
+print("X_train\n")
+print(X_train)
+print("\nLenght of X_train ",len(X_train))
+print("\nX_test\n")
+print(X_test)
+print("\nLenght of X_test ",len(X_test))
+
+```
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+#### Check the missing data
+
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/f1faabdf-0245-4be9-925c-d7d94a546180)
+
+#### Check the duplicates
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/9fe0dca7-e90c-4ca2-94cc-df30dbd736e9)
+
+#### check for outliers
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/f4e4801a-9093-4beb-b8cf-2a4c16d92a1e)
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/dcf3524d-a8a9-4e91-958e-2b294bdcc231)
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/6f8ff209-c650-41c5-aae3-b2730254bd03)
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/d8b230ce-41eb-4bb5-8f3d-2880033d2f91)
+
+
+
+#### Normailzed datset after few preprocessing
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/de6284af-0ad4-404b-bb8f-0fc7fcac53da)
+
+#### Training and testing
+
+![image](https://github.com/Rajeshkannan-Muthukumar/Ex-1-NN/assets/93901857/f5a1f92f-d739-4414-8560-dc6787defbad)
 
 
 ## RESULT:
